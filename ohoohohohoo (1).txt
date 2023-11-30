@@ -1,0 +1,534 @@
+﻿Index
+
+
+S. No
+	Topic/Aim
+	1
+	Practical of Data Exploration (Statistical Analysis) and Data Pre-processing (Data Transformation and Dimension Reduction)
+	2
+	Study of Data Mining tool – WEKA.
+	3
+	Implementation of pre-processing in WEKA.
+	4
+	Implementation of any one classifier using JAVA and verify results with WEKA.
+	5
+	Implementation of any one clustering algorithm using JAVA and verify results with WEKA.
+	6
+	Implementation of association mining rule –Apriori algorithm using JAVA and verify the result with WEKA.
+	7
+	Using WEKA to compare different classifiers using Experimenter.
+	8
+	Implementation of KDD process in WEKA – Knowledge Flow
+	9
+	Practical on any Business Intelligence application.
+a) Problem definition, identifying which data mining task is needed
+b) Identify and use a standard data mining dataset available for the problem.
+	
+
+________________
+
+
+Practical 1
+Practical of Data Exploration (Statistical Analysis) and Data Pre-processing (Data Transformation and Dimension Reduction)
+
+
+
+
+ import numpy as np
+from scipy import stats
+
+
+data = [34, 45, 32, 48, 22, 55, 36, 38, 40, 28, 60]
+
+
+mean = np.mean(data)
+median = np.median(data)
+std_dev = np.std(data)
+variance = np.var(data)
+min_value = min(data)
+max_value = max(data)
+range_value = max_value - min_value
+
+
+t_statistic, p_value = stats.ttest_1samp(data, popmean=40)
+
+
+print("Data : ", data)
+print("Mean : ", mean)
+print("Median : ", median)
+print("Standard deviation : ", std_dev)
+print("Variance : ", variance)
+print("Minimum value : ", min_value)
+print("Maximum value : ", max_value)
+print("Range : ", range_value)
+print("T-Statistic : ", t_statistic)
+print("P-Value : ", p_value)
+
+
+#Perform a normality test
+shapiro_stat, shapiro_p = stats.shapiro(data)
+if shapiro_p > 0.05 :
+    print("Data is normally distributed (Shapiro-Wilk testp -value = ", shapiro_p, ")")
+else :
+    print("Data is not normally distributed (Shapiro-Wilk testp -value = ", shapiro_p, ")")
+  
+________________
+
+Practical 2
+Study of Data Mining tool – WEKA.
+
+
+WEKA, which stands for Waikato Environment for Knowledge Analysis, is a popular and open-source data mining tool developed by the University of Waikato in New Zealand. It provides a comprehensive set of tools and algorithms for data preprocessing, machine learning, and data mining tasks. WEKA is widely used for research, education, and practical applications in the field of data mining and machine learning.
+
+
+Key features and capabilities of WEKA include:
+
+
+1. User-Friendly Interface: WEKA offers a graphical user interface (GUI) that allows users to interact with the tool easily. It's suitable for both beginners and experienced data miners.
+
+
+2. Data Preprocessing: WEKA provides a range of data preprocessing techniques for tasks like data cleaning, transformation, feature selection, and handling missing values. This ensures data quality and suitability for mining.
+
+
+3. Machine Learning Algorithms: WEKA includes a diverse collection of machine learning algorithms, including decision trees, support vector machines, neural networks, clustering algorithms, and more. Users can apply these algorithms to various data mining tasks.
+
+
+WEKA Applications : 
+1. Explorer:
+The Explorer is the primary and most commonly used interface in WEKA. It provides a graphical user interface (GUI) for loading datasets, preprocessing data, applying various machine learning algorithms, evaluating models, and visualizing results.
+
+
+2. Experimenter:
+The Experimenter in WEKA allows for running multiple experiments in a batch mode. It's helpful when you want to compare the performance of multiple algorithms or configurations on multiple datasets.
+
+
+3. KnowledgeFlow:
+KnowledgeFlow offers a visual interface for creating, editing, and executing data mining workflows. It's a visual programming environment where users can design data 
+processing pipelines by connecting various processing components and models, making it easier to create complex workflows.
+
+
+4. Workbench:
+The Workbench is a comprehensive environment that integrates different WEKA components and provides a unified interface for various data mining tasks. It combines the functionalities of Explorer, Experimenter, and KnowledgeFlow into a single interface, allowing users to switch between different modes seamlessly.
+
+
+5. Simple CLI (Command-Line Interface):
+WEKA also provides a command-line interface for users who prefer working with scripts or command-based interactions. It allows users to perform various tasks such as loading data, applying algorithms, evaluating models, etc., through command-line commands.
+
+
+Features of WEKA : 
+
+
+1. Preprocess
+The preprocessing of data is a crucial task in data mining. Because most of the data is raw, there are chances that it may contain empty or duplicate values, have garbage values, outliers, extra columns, or have a different naming convention. All these things degrade the results.
+To make data cleaner, better and comprehensive, WEKA comes up with a comprehensive set of options under the filter category. The tool provides both supervised and unsupervised types of operations.
+
+
+2. Classify
+Classification is one of the essential functions in machine learning, where we assign classes or categories to items. The classic examples of classification are: declaring a brain tumor as "malignant" or "benign" or assigning an email to a "spam" or "not_spam" class.
+After selecting the desired classifier, we select test options for the training set. 
+
+
+3. Cluster
+In clustering, a dataset is arranged in different groups/clusters based on some similarities. In this case, the items within the same cluster are identical but different from other clusters. Examples of clustering include identifying customers with similar behaviours and organizing the regions according to homogenous land use.
+
+
+4. Associate
+Association rules highlight all the associations and correlations between items of a dataset. In short, it is an if-then statement that depicts the probability of relationships between data items. A classic example of association refers to a connection between the sale of milk and bread.
+The tool provides Apriori, FilteredAssociator, and FPGrowth algorithms for association rules mining in this category.
+
+
+5. Select Attributes
+Every dataset contains a lot of attributes, but several of them may not be significantly valuable. Therefore, removing the unnecessary and keeping the relevant details are very important for building a good model.
+Many attribute evaluators and search methods include BestFirst, GreedyStepwise, and Ranker.
+
+
+6. Visualize
+In the visualize tab, different plot matrices and graphs are available to show the trends and errors identified by the model.
+________________
+
+
+Practical 3
+Implementation of pre-processing in WEKA.
+
+
+Step 1 : 
+Open the WEKA application and the first page is displayed where you have the option to choose from various applications that WEKA supports.
+  
+
+
+
+Step 2 : 
+Click on “Explorer” and the below image is shown
+  
+
+
+
+Step 3 : 
+Click on “Open File” and then double click on “Program Files”
+  
+
+
+
+Then double click on “Weka-3-8-6”
+  
+
+Then double click on “data” folder
+  
+
+
+
+Then select the “cpu” dataset and click “Open”
+  
+
+
+
+The dataset is added and this screen is displayed
+  
+
+
+
+Step 4 : 
+Click on the “Choose” button. Choose the “Normalize” filter and then click “Apply”  
+Step 5 : 
+Click on “Edit” and the screen is displayed.
+  
+
+Here, Select any column and it can be replaced i.e select Replace values with
+  
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+Changed values in the Class attribute
+  
+
+
+
+
+
+An instance can also be deleted by right clicking on the the value
+  
+
+
+
+A new instance can also be added by clicking on the “Add instance” on the bottom.
+  
+
+
+
+Step 6 : 
+The scatter plot can be visualized by going into the “Visualize” tab 
+  
+  
+________________
+
+Practical 4
+Implementation of any one classifier using JAVA and verify results with WEKA.
+
+
+Step 1 : 
+Open the “Explorer” application, then “Open File” and choose the “weather.numeric” dataset.
+  
+
+  
+
+Step 2 : 
+Go to the “Classify” tab 
+  
+
+Click on “Choose” then select “J48” from “trees”. 
+  
+
+
+
+Select the column required, then click on “Start”. Here. the column chosen is “outlook”
+  
+
+  
+
+Right click on the J48 tab and select “Visualize tree”
+  
+
+  
+________________
+
+Practical 5 
+Implementation of any one clustering algorithm using JAVA and verify results with WEKA.
+
+
+Step 1 : 
+Open the “Explorer” application, then “Open File” and choose the “cpu” dataset.
+  
+
+
+
+Step 2 : 
+Go to the “Cluster” tab 
+  
+
+
+
+Click on “Choose” and then select “simpleKMeans”
+  
+
+Then, click on “ Start”. The output is shown.
+  
+________________
+
+Practical 6
+Implementation of association mining rule –Apriori algorithm using JAVA and verify the result with WEKA.
+
+
+Step 1 : 
+Open the “Explorer” application, then “Open File” and choose the “weather.nominal” dataset.
+  
+
+Step 2 : 
+Go to the “Associate” tab 
+  
+
+Step 3 : 
+Click on “Choose” and select “Apriori”
+  
+
+Then click on “Start” and the output is shown.
+  
+________________
+
+Practical 7
+Using WEKA to compare different classifiers using Experimenter.
+
+
+Step 1 : 
+Open the WEKA application and the first page is displayed where you have the option to choose from various applications that WEKA supports.
+  
+
+
+
+Step 2 : 
+Click on “Experimenter” and the below image is shown
+  
+
+Step 3 : 
+Under Setup, click on “New”
+  
+
+
+
+Step 4 : 
+Under “Datasets”, select “Add new…”. Then select the “iris” dataset.
+  
+
+Select the “Use relative paths” checkbox
+  
+
+
+
+Step 5 : 
+Under the Algorithms, click on “Add new…”. Then click on Choose to select the different algorithms.
+  
+
+
+
+Under the “lazy” classifier, Select 
+
+
+i. IBk
+  
+
+
+
+ii. KStar
+  
+
+
+
+iii. LWL
+  
+
+
+
+The screen is displayed below. We can also select each Algorithm and change the order by using the “Up” and “Down” function
+  
+
+Step 6 : 
+Go to the “Run” tab and click on “Start”
+  
+
+
+
+Step 7 : 
+Go to the “Analyze” tab and click on “Experiment”
+  
+
+Under “Actions”, Click on “Perform Test”
+  
+
+
+
+Here, Various configurations can be made such as the specific rows and columns in the dataset can be selected and also swapped as well as the sorting can be done.
+  
+
+________________
+
+
+Practical 8
+Implementation of KDD process in WEKA – Knowledge Flow
+
+
+Step 1 : 
+Open the WEKA application and the first page is displayed where you have the option to choose from various applications that WEKA supports.
+  
+
+
+
+Step 2 : 
+Select the “KnowledgeFlow” application and the below image is shown.
+  
+
+Step 3 : 
+Click on “DataSources” and then select “ArffLoader” and drop it on the screen.
+  
+
+Right click on “ArffLoader” on the screen and select “Configure”
+  
+
+
+
+“Browse” and choose the “iris” dataset. Then select “OK”
+  
+
+
+
+Step 4 : 
+Click on “Evaluation” and select and drop “ClassAssigner” as well as “CrossValidationFoldMaker” onto the screen
+  
+
+
+
+Right click on “ArffLoader” and click “dataSet”. Drag the arrow to “ClassAssigner” 
+  
+
+  
+
+
+
+Right click on “ClassAssigner” and click “dataSet”. Drag the arrow to “CrossValidationFoldMaker”
+   
+  
+
+
+
+Step 5 : 
+Click on “Classifiers” and select “trees”. Then, select “J48”. Drop it on the screen.
+  
+
+Right click on “CrossValidationFoldMaker” and click “testSet”. Drag the arrow to “J48”. Do the same with “trainingSet”.
+  
+
+  
+
+  
+
+
+
+Step 6 : 
+Click on “Evaluation” and select and drop “ClassifierPerformanceEvaluator”onto the screen
+  
+
+Right click on “J48” and select “batchClassifier”. Drag the arrow to “ClassifierPerformanceEvaluator”
+  
+
+  
+
+
+
+Step 7 : 
+Click on “Visualization” and select and drop “TextViewer” onto the screen
+  
+
+
+
+Right click on “ClassifierPerformanceEvaluator” and select “text”. Drag it to “TextViewer”
+  
+
+  
+
+
+
+Step 8 : 
+Click on Run sign on the top left. The output is shown on “Status” below.
+
+
+  
+
+
+
+Step 9 : 
+Right click on “TextViewer” and select “Show Results”
+  
+
+
+
+  
+________________
+
+Practical 9
+Practical on any Business Intelligence application.
+a) Problem definition, identifying which data mining task is needed
+b) Identify and use a standard data mining dataset available for the problem.
+
+
+Problem Definition : Classify Iris flowers into species based on features.
+Data Mining Task : Classification.
+
+
+Step 1 : 
+Open the WEKA application and the first page is displayed where you have the option to choose from various applications that WEKA supports.
+  
+
+Step 2 : 
+Click on “Explorer” and the below image is shown
+  
+
+Step 3 : 
+Click on “Open File” and then open the “iris” dataset.
+  
+
+Step 4 : 
+Click on the “Choose” button. Choose the “Normalize” filter and then click “Apply”
+  
+
+Missing values can be checked by using the “ReplaceMissingValues” filter.
+  
+
+Step 5 : 
+Go to the “Classify” tab 
+  
+
+Click on “Choose” then select “J48” from “trees”. 
+  
+
+Select the column required, then click on “Start”. Here. the column chosen is “class”
+  
+
+
+
+Right click on the J48 tab and select “Visualize tree”
+  
+
+  
+
+
+
+Now, the model can also be used to experiment with different classifiers and other algorithms to enhance their performance. 
+It can then be interpreted and used to make predictions on new instances of iris flowers and can also be deployed for classification of iris flowers in real-time.
