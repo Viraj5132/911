@@ -1,0 +1,270 @@
+practical 1
+> for(i in 1:10) {print(i)}
+
+/////
+x=5
+if(x>10)
+{
+  print(paste(x,"x is bada than 10"))
+}else if(x<10){print(paste(x,"x is chota than 10"))}else{print("x is  equal to 10")}
+
+//////
+ var <- 5
+ var2 <- 6
+ if(var>var2)
+{
+   print (paste("var is greater than var 2"))
+}else if(var<var2){print(paste("var is less than var2"))}else{print("var is eqqual")}
+
+-----------------------------------------------------------------------------------
+12/01/24
+PRACTICAL 2
+
+1.
+
+rainfall<- c(799,1174.8,865.1,1334.6,635.4,918.5,685.5,998.6,784.2,985,881.8,1071)
+#convert it to a time series object
+rainfall.timeseries<-ts(rainfall,start=c(2012,1),frequency=12)
+#print the timeseries data
+print(rainfall.timeseries)
+#give the chart file a name
+png(file="rainfall.png")
+#plot a graph of the tim
+plot(rainfall.timeseries)
+dev.off()
+
+
+
+2.
+rainfall<- c(23,33,44,55,66,77,88,99,110,112,143)
+#convert it to a time series object
+rainfall.timeseries<-ts(rainfall,start=c(2012,1),frequency=12)
+#print the timeseries data
+print(rainfall.timeseries)
+#give the chart file a name
+print(rainfall.timeseries)
+
+#plot a graph of the tim
+plot(rainfall.timeseries)
+dev.off()
+--------------------------------------------------------------------------------------
+
+12/01/2024
+PRACTICAL 3
+TIME SERIES FREQUENCY ANALYSIS
+
+////
+1.AIR PASSENGERS
+data("AirPassengers")
+class(AirPassengers)
+start(AirPassengers)
+end(AirPassengers)
+frequency(AirPassengers)
+summary(AirPassengers)
+plot(AirPassengers)
+
+/////
+data("AirPassengers")
+class(AirPassengers)
+start(AirPassengers)
+end(AirPassengers)
+frequency(AirPassengers)
+summary(AirPassengers)
+plot(AirPassengers)
+
+abline(reg=lm(AirPassengers~time(AirPassengers)))
+cycle(AirPassengers)
+
+boxplot(AirPassengers~cycle(AirPassengers))
+
+
+//////
+2.CARS
+data(cars)
+class(cars)
+start(cars)
+end(cars)
+frequency(cars)
+summary(cars)
+plot(cars)
+abline(reg=lm(cars~time(cars)))
+cycle(cars)
+boxplot(cars~cycle(cars))
+
+////////
+data(cars)
+class(cars)
+start(cars)
+end(cars)
+frequency(cars)
+summary(cars)
+plot(cars)
+abline(reg=lm(cars~time(cars)))
+cycle(cars)
+boxplot(cars~cycle(cars))
+reg<-lm(speed~dist,data=cars)
+plot(reg)
+
+----------------------------------------------------------------------------
+19/01/2024
+PRACTICAL 4
+
+1.Warpbreaks' is a built-in dataset in R. Load it using the function data(warpbreaks) . 
+                                                                           
+head(warpbreaks)
+summary(warpbreaks)
+Model_1<-aov(breaks-wool+tension,data=warpbreaks)
+summary(Model_1)
+plot(Model_1)
+
+Model_2<-aov(breaks~wool+tension:tension,data=warpbreaks)
+summary(Model_2)
+plot(Model_2)
+
+
+2.
+data("PlantGrowth")
+head(PlantGrowth)
+summary(PlantGrowth)
+
+#levels for group
+levels(PlantGrowth$group)
+
+
+#extract variable
+weight=PlantGrowth$weight
+group=PlantGrowth$group
+
+
+#mean of weight
+mean(weight)
+
+
+mean(weight[group=="ctrl"])
+
+
+mean(weight[group=="trt1"])
+
+mean(weight[group=="trt2"])
+
+
+tapply(weight,group,mean)
+
+
+tapply(weight,group,length)
+
+
+aov(weight~group)
+
+----------------------------------------------------------------------------------
+29/01/2024 
+PRACTICAL 5( LINEAR REGRESSION )
+
+1.
+height <- c(43,65,6,6,36,36,56,43556,43,7564,7,4764,75)
+weight <- c(43,5,6,6,36,465,65,7,65467,547,647,45,7)
+student <- lm(weight ~ height)
+print(student)
+
+plot(student)
+predict(student,data.frame(height = 199),interval ="confidence")
+
+
+2.
+df <- datasets::cars
+my_linear_model <- lm(dist ~ speed, data = df)
+print(my_linear_model)
+
+lm(formula = dist ~ speed,data = df)
+
+
+
+3.
+variable_speed <- data.frame(speed=c(11,12,432,354,4,56,54,6,56))
+linear_model <- lm(dist ~ speed,data = df)
+predict(linear_model,newdata = variable_speed)
+
+predict(linear_model,newdata = variable_speed,interval = "confidence")
+
+---------------------------------------------------------------------------
+PRACTICAL 6(HYPOTHESIS TESTING)
+
+1.ONE SAMPLE TESTING
+x <- rnorm(100)
+t.test(x,mu=5)
+
+
+2.TWO SAMPLE TESTING
+x <- rnorm(100)
+y <- rnorm(100)
+t.test(x,y)
+
+
+3.DIRECTIONAL HYPOTHESIS
+x <- rnorm(100)
+t.test(x,mu=2,alternative = 'greater')
+
+
+4.TESTING
+dataf<-seq(1,20,by=1)
+dataf
+
+mean(dataf)
+
+sd(dataf)
+
+[The below code should be copied and executed together copy from a to a]
+a <- t.test(dataf,alternate = "two sided",mu=10,conf.int=0.95)
+a
+
+----------------------------------------------------------------------------------------
+PRACTICAL 7(DECISION TREE)
+
+1.
+install.packages("party")
+
+library(party)
+
+print(head(readingSkills))
+
+#create the input data frame
+input.dat<-readingSkills[c(1:105),]
+#give the chart file a name
+png(file="decision_tree.png")
+#create the tree
+output.tree<-ctree(nativeSpeaker ~ age + shoeSize + score,data=input.dat)
+#plot the tree
+plot(output.tree)
+
+-----------------------------------------------------------------------------------------
+06/03/2024
+PRACTICAL  8(LOGISTIC REGRESSION)
+
+1.
+#select 
+input <- mtcars[,c("am","cyl","hp","wt")]
+am.data = glm(formula=am ~ cyl+hp+wt,data=input,family = binomial)
+print(summary(am.data))
+
+plot(am.data)  
+
+-----------------------------------------------------------------------------------
+PRACTICAL 9(K - MEANS)
+1.
+install.packages("ggplot2")
+
+library(ggplot2)
+df <- iris
+head(iris)
+
+
+
+ggplot(df,aes(Petal.Length,Petal.Width))+geom_point(aes(col=Species),size=4)
+
+set.seed(101)
+irisCluster <- kmeans(df[,1:4],center=3,nstart = 20)
+irisCluster
+
+install.packages("cluster")
+
+clusplot(iris,irisCluster$cluster,color=T,shade=T,labels = 0,lines = 0)
